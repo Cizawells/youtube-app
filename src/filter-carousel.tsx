@@ -16,7 +16,7 @@ import { cn } from "./lib/utils";
 interface FilterCarouselProps {
   value?: string | null;
   isLoading?: boolean;
-  onSelect?: (value: string | null) => void;
+  onSelect: (value: string | null) => void;
   data: {
     value: string;
     label: string;
@@ -61,16 +61,20 @@ export const FilterCarousel = ({
         className="w-3/6 m-auto bg-black"
       >
         <CarouselContent className="-ml-3">
-          <CarouselItem className="pl-3 basis-auto">
-            {!isLoading && (
+          {!isLoading && (
+            <CarouselItem
+              className="pl-3 basis-auto"
+              onSelect={() => onSelect(null)}
+            >
               <Badge
                 variant={!value ? "default" : "secondary"}
                 className="rounded-lg px-3 py-1 cursor-pointer whitespace-nowrap text-sm"
               >
                 All
               </Badge>
-            )}
-          </CarouselItem>
+            </CarouselItem>
+          )}
+
           {isLoading &&
             Array.from({ length: 14 }).map((_, index) => (
               <CarouselItem key={index} className="pl-3 basis-auto">
@@ -80,7 +84,11 @@ export const FilterCarousel = ({
             ))}
           {!isLoading &&
             data.map((item) => (
-              <CarouselItem key={item.value} className="pl-3 basis-auto">
+              <CarouselItem
+                key={item.value}
+                className="pl-3 basis-auto"
+                onClick={() => onSelect(item.value)}
+              >
                 <Badge
                   variant={value === item.value ? "default" : "secondary"}
                   className="rounded-lg px-3 py-1 cursor-pointer whitespace-nowrap text-sm"
