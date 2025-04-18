@@ -1,15 +1,50 @@
+"use client";
+
 import { Separator } from "@/components/ui/separator";
-import { Sidebar, SidebarContent } from "@/components/ui/sidebar";
-import { MainSection } from "./main-section";
-import { PersonalSection } from "./personal-section";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "@/components/ui/sidebar";
+import Link from "next/link";
+import { LogOutIcon, VideoIcon } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { StudioSidebarHeader } from "./studio-sidebar-header";
 
 export const StudioSidebar = () => {
+  const pathname = usePathname();
   return (
     <Sidebar className="pt-16 z-40 " collapsible="icon">
       <SidebarContent className="bg-background">
-        <MainSection />
-        <Separator />
-        <PersonalSection />
+        <SidebarGroup>
+          <SidebarMenu>
+            <StudioSidebarHeader />
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                tooltip="Exit studio"
+                isActive={pathname === "/studio"}
+                asChild
+              >
+                <Link href="/studio">
+                  <VideoIcon className="size-5" />
+                  <span className="text-sm">Contents</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <Separator />
+            <SidebarMenuItem>
+              <SidebarMenuButton tooltip="Exit studio" asChild>
+                <Link href="/">
+                  <LogOutIcon className="size-5" />
+                  <span className="text-sm">Exit studio</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarGroup>
       </SidebarContent>
     </Sidebar>
   );
