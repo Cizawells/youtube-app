@@ -26,6 +26,7 @@ export const userRelations = relations(users, ({ many }) => ({
 }))
 
 
+
 export const categories =  pgTable(
   "categories",
   {
@@ -39,6 +40,9 @@ export const categories =  pgTable(
   (t) => [uniqueIndex("name_idx").on(t.name)]
 );
 
+export const categoryRelations = relations(users, ({ many }) => ({
+  videos: many(videos)
+}))
 
 export const videos = pgTable("videos", {
   id: uuid().primaryKey().defaultRandom(),
