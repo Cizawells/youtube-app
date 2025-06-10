@@ -34,7 +34,7 @@ export const InfiniteScrooll = ({
   return (
     <div className="flex flex-col items-center gap-4 p-4">
       <div ref={targetRef} className="h-1" />
-      {hasNextPage && (
+      {hasNextPage ? (
         <Button
           variant="secondary"
           disabled={!hasNextPage || isFetchingNextPage}
@@ -42,6 +42,10 @@ export const InfiniteScrooll = ({
         >
           {isFetchingNextPage ? "Loading..." : "Load more"}
         </Button>
+      ) : (
+        <p className="text-xs text-muted-foreground">
+          You have reached the end of the List
+        </p>
       )}
     </div>
   );
