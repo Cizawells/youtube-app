@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Badge } from "./components/ui/badge";
+import { Badge } from "./ui/badge";
 import {
   Carousel,
   CarouselApi,
@@ -9,9 +9,9 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "./components/ui/carousel";
-import { Skeleton } from "./components/ui/skeleton";
-import { cn } from "./lib/utils";
+} from "./ui/carousel";
+import { Skeleton } from "./ui/skeleton";
+import { cn } from "@/lib/utils";
 
 interface FilterCarouselProps {
   value?: string | null;
