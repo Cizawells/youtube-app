@@ -9,7 +9,11 @@ export const StudioUploader = ({
     endpoint,
     onSuccess
 }: StudioUploaderProps) => {
+    return (
+
     <div>
         <MuxUploader />
     </div>
+    )
+
 }
