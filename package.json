@@ -5,6 +5,8 @@
   "scripts": {
     "dev:all": "concurrently \"bun run dev:webhook\" \"bun run dev\"",
     "dev": "next dev",
+    "drizzle:run": "bunx drizzle-kit studio --config src/db/drizzle.config.ts",
+    "drizzle:push": "bunx drizzle-kit studio --config src/db/drizzle.config.ts",
     "dev:webhook": "ngrok http --url=lucky-sheep-bright.ngrok-free.app 3000",
     "build": "next build",
     "start": "next start",

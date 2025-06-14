@@ -13,10 +13,11 @@ create: protectedProcedure.mutation(async ({ ctx}) => {
         new_asset_settings: {
             passthrough: userId,
             playback_policies: ["public"],
-            mp4_support: "standard",
         },
         cors_origin: "*" //TODO: In production, set to your url
     })
+    console.log({ upload });
+    console.log({url: upload.url})
 
     // throw new TRPCError({ code: "BAD_REQUEST"})
 
@@ -24,7 +25,9 @@ create: protectedProcedure.mutation(async ({ ctx}) => {
     .insert(videos)
     .values({
         userId,
-        title: "Untitled"
+        title: "Untitled",
+        muxStatus: "Waiting",
+        muxUploadId: upload.id
     })
     .returning();
 
