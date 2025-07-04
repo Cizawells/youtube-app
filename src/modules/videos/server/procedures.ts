@@ -13,6 +13,8 @@ export const videosRouter = createTRPCRouter({
       },
       cors_origin: "*", //TODO: In production, set to your url
     });
+    console.log({ upload });
+    console.log({ url: upload.url });
 
     // throw new TRPCError({ code: "BAD_REQUEST"})
 
@@ -21,6 +23,8 @@ export const videosRouter = createTRPCRouter({
       .values({
         userId,
         title: "Untitled",
+        muxStatus: "Waiting",
+        muxUploadId: upload.id,
       })
       .returning();
 
